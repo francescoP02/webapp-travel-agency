@@ -24,7 +24,7 @@ namespace webapp_travel_agency.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View("Index", _db.TravelPackages.ToList());
+            return View(/*"Index", _db.TravelPackages.ToList()*/);
         }
 
         public IActionResult Privacy()

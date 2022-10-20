@@ -12,3 +12,7 @@ Aggiungere un nuovo pacchetto
 Modificare un pacchetto esistente
 Eliminare un pacchetto esistente
 Pertanto ricordatevi di creare il vostro modello PacchettoViaggio.cs e di configurare il vostro Entity Framework per poter salvare e gestire tutti i vostri pacchetti anche lato Database. Queste pagine dovranno essere realizzate utilizzando l’approccio MVC + Razor + Entity Framework. Non dimenticate di usare e configurare il Layout del sito.
+
+
+MILESTONE 2: Implementare l’Homepage dell’agenzia di viaggio che mostra l’elenco dei pacchetti offerti. L’utente potrà quindi visualizzare in pacchetti in maniera chiara e “user-friendly”.
+In questo caso vi si chiede di implementare l’Homepage sfruttando le Web API, di conseguenza dovrete restituire una View con del codice Javascript per visualizzare la vostra lista di pacchetti che vi verranno forniti come oggetto JSON alla chiamata tramite AXIOS verso la vostra web API che creerete.
