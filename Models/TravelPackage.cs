@@ -10,6 +10,8 @@ namespace webapp_travel_agency.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "Il campo nome è obbligatorio")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "Il campo foto è obbligatorio")]
+        public string Photo { get; set; }
         [Required(ErrorMessage = "Il campo descrizione è obbligatorio")]
         public string Description { get; set; }
         [Required(ErrorMessage = "Il campo durata è obbligatorio")]
@@ -19,15 +21,16 @@ namespace webapp_travel_agency.Models
         [Required(ErrorMessage = "Il campo prezzo è obbligatorio")]
         [NegativeOrZero]
         public int Price { get; set; }
-
         public TravelPackage()
         {
 
         }
 
-        public TravelPackage(string name, string description, int duration, int peopleNumber, int price)
+        public TravelPackage(int id, string name, string photo, string description, int duration, int peopleNumber, int price)
         {
+            Id = id;
             Name = name;
+            Photo = photo;
             Description = description;
             Duration = duration;
             PeopleNumber = peopleNumber;

@@ -6,7 +6,7 @@ namespace webapp_travel_agency.Validation
     {
         protected override ValidationResult IsValid(object? value, ValidationContext validationContext)
         {
-            float fieldValue = (float)value;
+            int fieldValue = (int)value;
             if (fieldValue <= 0)
             {
                 return new ValidationResult("Il numero non puo essere minore o uguale a zero");
