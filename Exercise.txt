@@ -1,0 +1,14 @@
+﻿Nome repository: webapp-travel-agency
+Per svolgere questo test tecnico avrete a disposizione oggi e domani. Questo test tecnico vi permetterà di cimentarvi nello sviluppo di una webapp “completa” così come potrebbe capitarvi nella vostra futura carriera lavorativa.
+Riprendiamo un bel esercizietto fatto qualche tempo fa: bootstrap-travel-agency, questa volta però potrete sbizzarrirvi come volete con la grafica a partire anche da quanto avevate già fatto in precedenza.
+L’obiettivo sarà dunque quello di creare una webapp per un’agenzia di viaggi utilizzando l’approccio MVC / WebApi ed Entity Framework. L’agenzia vi commissiona questo progetto che prevede una parte di visualizzazione pacchetti viaggio offerti ai clienti e un’area di amministrazione per gestire i pacchetti proposti.
+Il progetto sarà suddiviso in MILESTONE.
+Per adesso vi fornisco la prima milestone, successivamente riceverete le altre.
+MILESTONE 1:
+In questa milestone andremo ad implementare l’area di amministrazione con tutte le funzionalità CRUD dei nostri pacchetti viaggio. Avremo quindi una pagina Index che mostrerà l’elenco in forma tabellare dei pacchetti che offriamo.
+Da questa pagina potremo:
+Visualizzare nel dettaglio un pacchetto
+Aggiungere un nuovo pacchetto
+Modificare un pacchetto esistente
+Eliminare un pacchetto esistente
+Pertanto ricordatevi di creare il vostro modello PacchettoViaggio.cs e di configurare il vostro Entity Framework per poter salvare e gestire tutti i vostri pacchetti anche lato Database. Queste pagine dovranno essere realizzate utilizzando l’approccio MVC + Razor + Entity Framework. Non dimenticate di usare e configurare il Layout del sito.
