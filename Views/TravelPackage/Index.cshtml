@@ -4,6 +4,9 @@
 }
 @model List<TravelPackage>
 <body>
+    <div>
+        <input id="search_package" type="text" class="form-control" placeholder="Search package..." onkeyup="searchPackage" />
+    </div>
     <h1 class="text-center my-4">Lista pacchetti viaggio:</h1>
     <div class="container">
 
@@ -21,9 +24,18 @@
 </body>
 
 <script type="text/javascript">
-    loadPizze()
-    function loadPizze() {
-        axios.get('api/packages').then((resp) => {
+    document.getElementById("search_package").addEventListener("keyup", searchPackage);
+    loadPackage();
+    function searchPackage(event) {
+        const value = document.getElementById("search_package").value;
+        loadPackage(value);
+    }
+    function loadPackage(search) {
+        axios.get('api/packages', {
+            params: {
+                search: search
+            }
+        }).then((resp) => {
             if (resp.data.length == 0) {
                 document.querySelector('.js_no_package').classList.remove('d-none');
                 document.querySelector('.js_package').classList.add('d-none');

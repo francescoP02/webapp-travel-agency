@@ -15,10 +15,18 @@ namespace webapp_travel_agency.Controllers.Api
             _db = new TravelAgencyContext();
         }
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(string? search)
         {
-            IQueryable<TravelPackage> Packages = _db.TravelPackages;
-            return Ok(Packages.ToList());
+            List<TravelPackage> packages;
+            if (search != null && search != "")
+            {
+                packages = _db.TravelPackages.Where(package => package.Name.Contains(search) || package.Description.Contains(search)).ToList();
+            }
+            else
+            {
+                packages = _db.TravelPackages.ToList();
+            }
+            return Ok(packages);
         }
     }
 }
