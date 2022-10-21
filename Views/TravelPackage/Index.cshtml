@@ -48,16 +48,17 @@
                     console.log('package', package)
                     document.querySelector('.js_package').innerHTML +=
                         `<div class="card my-3" style="width: 18rem;">
-                            <img src=${package.photo} class="card-img-top py-1" alt="${package.name}">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">${package.name}</h5>
-                                <p class="card-text">${package.description}</p>
-                                <p class="card-text">Price: ${package.price} € / per person</p>
-                                <p class="card-text">Duration: ${package.duration}</p>
-                                <p class="card-text">For ${package.peopleNumber} People</p>
-                            </div>
+                            <a href="TravelPackage/Show/${package.id}" class="ms-link">
+                                <img src=${package.photo} class="card-img-top py-1" alt="${package.name}">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">${package.name}</h5>
+                                    <p class="card-text">${package.description}</p>
+                                    <p class="card-text">Price: ${package.price} € / per person</p>
+                                    <p class="card-text">Duration: ${package.duration} days</p>
+                                    <p class="card-text">For ${package.peopleNumber} People</p>
+                                </div>
+                            </a>
                             <div class="card-footer d-flex justify-content-around">
-                                <a href="TravelPackage/Show/${package.id}" type = "button" class="btn btn-primary"> View Pizza </a>
                                 <a class="btn btn-warning" href="TravelPackage/EditForm/${package.id}">Edit</a>
                                 <a class="btn btn-danger" href="TravelPackage/Delete/${package.id}">Delete</a>
                             </div>

@@ -31,18 +31,18 @@ namespace webapp_travel_agency.Controllers
         {
             return View();
         }
-
         public IActionResult Show(int id)
         {
-            try
-            {
-                TravelPackage toShow = _db.TravelPackages.Where(x => x.Id == id).FirstOrDefault();
-                return View("Show", toShow);
-            }
-            catch
-            {
-                return View("Error");
-            }
+            //try
+            //{
+            //    TravelPackage toShow = _db.TravelPackages.Where(x => x.Id == id).FirstOrDefault();
+            //    return View("Show", toShow);
+            //}
+            //catch
+            //{
+            //    return View("Error");
+            //}
+            return View(id);
         }
 
         [HttpGet]

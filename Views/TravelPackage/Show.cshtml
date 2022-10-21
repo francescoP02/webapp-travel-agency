@@ -1,18 +1,39 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@model TravelPackage
+@model int
 
 @{
     Layout = "_Layout";
 }
 
-<div class="container">
-    <div class="clearfix">
+<div class="container" id="js_package">
+    @*<div class="clearfix">
         <img src="@Model.Photo" class="col-md-6 float-md-end mb-3 ms-md-3" alt="@Model.Name">
         <p class="card-text">@Model.Description</p>
         <p class="card-text">Price: @Model.Price €</p>
         <p class="card-text">Number of people: @Model.PeopleNumber</p>
         <p class="card-text">Duration: @Model.Duration</p>
-    </div>
+    </div>*@
 </div>
+
+<script type="text/javascript">
+    const id = @Model
+        axios.get(`/api/packages/${id}`).then((res) => {
+            const package = res.data;
+            console.log(package)
+            document.getElementById('js_package').innerHTML +=
+                `
+                        <h1>${package.name}</h1>
+                        <div class="clearfix">
+                    <img src="${package.photo}" class="col-md-6 float-md-end mb-3 ms-md-3" alt="${package.name}">
+                <p class="card-text">${package.description}</p>
+                <p class="card-text">Price: ${package.price} €</p>
+                <p class="card-text">Number of people: ${package.peopleNumber}</p>
+                <p class="card-text">Duration: ${package.duration} </p>
+        </div>`;
+        })
+            .catch((err) => {
+                console.log(err);
+            });
+</script>

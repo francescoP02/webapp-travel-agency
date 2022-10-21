@@ -28,5 +28,17 @@ namespace webapp_travel_agency.Controllers.Api
             }
             return Ok(packages);
         }
+
+        [HttpGet("{id}")]
+        public IActionResult Show(int id)
+        {
+            TravelPackage package = _db.TravelPackages.Where(p => p.Id == id).FirstOrDefault();
+
+            if (package == null)
+            {
+                return NotFound();
+            }
+            return Ok(package);
+        }
     }
 }
