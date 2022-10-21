@@ -1,7 +1,7 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@model int
+@model TravelPackage
 
 @{
     Layout = "_Layout";
@@ -17,7 +17,34 @@
     </div>*@
 </div>
 
-<div class="row d-none" id="contact-form">
+<div class="d-none my-5" id="js_messages">
+    <h2 class="text-center pt-4 pb-3">Messages:</h2>
+
+    @if (Model.messages.Count > 0)
+    {
+        <ul class="list-group flex-row flex-wrap justify-content-center">
+            @foreach (Message mess in Model.messages)
+            {
+                <li class="card my-3 me-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Da: @mess.Name @mess.Surname</h6>
+                        <h6 class="card-subtitle mb-2">Email: <a class="link-primary ms_pointer">@mess.Mail</a></h6>
+                        <p class="card-text">@mess.Text</p>
+                    </div>
+                </li>
+            }
+            <button type="button" onclick="HideMessage()" class="btn btn-outline-primary" href="#js_package">Close Messages</button>
+        </ul>
+    }
+    else
+    {
+        <h3>No message found</h3>
+    }
+</div>
+
+
+<div class="row d-none my-5" id="contact-form">
+    <h3>Send a message</h3>
     <div class="col-12 mt-5">
         <form onsubmit="SendMessage(event)">
             <div class="mb-3">
@@ -37,6 +64,7 @@
                 <textarea class="form-control" id="message-text" rows="10"></textarea>
             </div>
             <input type="submit" class="btn btn-primary" onclick="resultMessage()" value="Send" />
+            <button type="button" onclick="HideForm()" class="btn btn-outline-primary" href="#js_package">Close Form</button>
         </form>
     </div>
     <div id="_resultBox" class="_bg_wrap d-none">
@@ -49,7 +77,7 @@
 </div>
 
 <script type="text/javascript">
-    const id = @Model
+    const id = @Model.Id;
         axios.get(`/api/packages/${id}`).then((res) => {
             const package = res.data;
             console.log(package)
@@ -62,7 +90,8 @@
                     <p class="card-text">Price: ${package.price} €</p>
                     <p class="card-text">Number of people: ${package.peopleNumber}</p>
                     <p class="card-text">Duration: ${package.duration} </p>
-                    <a type="button" href="#contact-form" onclick="ViewForm()" class="btn btn-primary">Message</a>
+                    <a type="button" href="#contact-form" onclick="ViewForm()" class="btn btn-primary">Send Message</a>
+                    <a type="button" href="#js_messages" onclick="MessageList()" class="btn btn-primary">View Messages</a>
                 </div>`;
             document.getElementById('js_result_button').innerHTML +=
                 `
@@ -78,6 +107,18 @@
 
     function ViewForm(){
         document.getElementById("contact-form").classList.remove("d-none");
+    }
+
+    function HideForm() {
+        document.getElementById("contact-form").classList.add("d-none");
+    }
+
+    function MessageList() {
+        document.getElementById("js_messages").classList.remove("d-none");
+    }
+
+    function HideMessage() {
+        document.getElementById("js_messages").classList.add("d-none");
     }
 
     function resultMessage() {

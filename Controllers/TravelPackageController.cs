@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient.Server;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using webapp_travel_agency.Models;
 
@@ -37,16 +38,15 @@ namespace webapp_travel_agency.Controllers
         }
         public IActionResult Show(int id)
         {
-            //try
-            //{
-            //    TravelPackage toShow = _db.TravelPackages.Where(x => x.Id == id).FirstOrDefault();
-            //    return View("Show", toShow);
-            //}
-            //catch
-            //{
-            //    return View("Error");
-            //}
-            return View(id);
+            try
+            {
+                TravelPackage toShow = _db.TravelPackages.Where(x => x.Id == id).Include("messages").FirstOrDefault();
+                return View("Show", toShow);
+            }
+            catch
+            {
+                return View("Error");
+            }
         }
 
         [HttpGet]
