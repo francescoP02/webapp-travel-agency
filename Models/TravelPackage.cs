@@ -21,6 +21,8 @@ namespace webapp_travel_agency.Models
         [Required(ErrorMessage = "Il campo prezzo è obbligatorio")]
         [NegativeOrZero]
         public int Price { get; set; }
+
+        public List<Message> messages { get; set; }
         public TravelPackage()
         {
 

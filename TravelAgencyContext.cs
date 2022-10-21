@@ -7,6 +7,7 @@ namespace webapp_travel_agency
     {
 
         public DbSet<TravelPackage> TravelPackages { get; set; }
+        public DbSet<Message> Messages { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=db_travel_agency;Integrated Security=True");

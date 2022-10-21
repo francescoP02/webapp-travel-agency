@@ -21,3 +21,12 @@ body {
     color: inherit;
     text-decoration: none;
 }
+
+.ms-img-logo{
+    width: 60px;
+    border-radius: 50%;
+}
+
+.navbar {
+    background-color: #02301f;
+}
