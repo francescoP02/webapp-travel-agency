@@ -31,6 +31,10 @@ namespace webapp_travel_agency.Controllers
         {
             return View();
         }
+        public IActionResult Contact()
+        {
+            return View();
+        }
         public IActionResult Show(int id)
         {
             //try

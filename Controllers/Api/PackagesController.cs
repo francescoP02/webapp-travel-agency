@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using webapp_travel_agency.Models;
 
 namespace webapp_travel_agency.Controllers.Api

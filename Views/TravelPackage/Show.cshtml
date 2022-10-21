@@ -17,6 +17,37 @@
     </div>*@
 </div>
 
+<div class="row d-none" id="contact-form">
+    <div class="col-12 mt-5">
+        <form onsubmit="SendMessage(event)">
+            <div class="mb-3">
+                <label for="message-name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="message-name">
+            </div>
+            <div class="mb-3">
+                <label for="message-surname" class="form-label">Surname</label>
+                <input type="text" class="form-control" id="message-surname">
+            </div>
+            <div class="mb-3">
+                <label for="message-mail" class="form-label">Mail</label>
+                <input type="mail" class="form-control" id="message-mail">
+            </div>
+            <div class="mb-3">
+                <label for="message-text" class="form-label">Text</label>
+                <textarea class="form-control" id="message-text" rows="10"></textarea>
+            </div>
+            <input type="submit" class="btn btn-primary" onclick="resultMessage()" value="Send" />
+        </form>
+    </div>
+    <div id="_resultBox" class="_bg_wrap d-none">
+        <div class="bg-light d-inline-block p-4 fw-bold rounded position-absolute bottom-50 end-50 text-center">
+            <p id="js_result_message" class="text-black"></p>
+            <div class="d-flex" id="js_result_button">
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
     const id = @Model
         axios.get(`/api/packages/${id}`).then((res) => {
@@ -24,16 +55,50 @@
             console.log(package)
             document.getElementById('js_package').innerHTML +=
                 `
-                        <h1>${package.name}</h1>
-                        <div class="clearfix">
+                <h1>${package.name}</h1>
+                <div class="clearfix">
                     <img src="${package.photo}" class="col-md-6 float-md-end mb-3 ms-md-3" alt="${package.name}">
-                <p class="card-text">${package.description}</p>
-                <p class="card-text">Price: ${package.price} €</p>
-                <p class="card-text">Number of people: ${package.peopleNumber}</p>
-                <p class="card-text">Duration: ${package.duration} </p>
-        </div>`;
+                    <p class="card-text">${package.description}</p>
+                    <p class="card-text">Price: ${package.price} €</p>
+                    <p class="card-text">Number of people: ${package.peopleNumber}</p>
+                    <p class="card-text">Duration: ${package.duration} </p>
+                    <a type="button" href="#contact-form" onclick="ViewForm()" class="btn btn-primary">Message</a>
+                </div>`;
+            document.getElementById('js_result_button').innerHTML +=
+                `
+                <div class="btn-group">
+                    <a href="/TravelPackage/Show/${package.id}" type="button" class="btn btn-primary mx-2">Return to ${package.name} Package</a>
+                    <a href="/" type="button" class="btn btn-primary mx-2">Return to Packages' List'</a>
+                </div>
+                `;
         })
-            .catch((err) => {
-                console.log(err);
-            });
+        .catch((err) => {
+            console.log(err);
+        });
+
+    function ViewForm(){
+        document.getElementById("contact-form").classList.remove("d-none");
+    }
+
+    function resultMessage() {
+        const resultBox = document.getElementById('_resultBox');
+        resultBox.classList.toggle('d-none');
+    }
+    function SendMessage(e) {
+        e.preventDefault();
+        axios.post(`/api/message/send/${id}`, {
+            mail: document.getElementById('message-mail').value,
+            name: document.getElementById('message-name').value,
+            surname: document.getElementById('message-surname').value,
+            text: document.getElementById('message-text').value,
+        }).then(res => {
+            document.getElementById('message-mail').value = '';
+            document.getElementById('message-name').value = '';
+            document.getElementById('message-surname').value = '';
+            document.getElementById('message-text').value = '';
+            document.getElementById('js_result_message').innerHTML = "Message send";
+        }).catch(err => {
+            console.log(err);
+        })
+    }
 </script>

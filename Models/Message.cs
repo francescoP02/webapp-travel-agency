@@ -13,7 +13,8 @@ namespace webapp_travel_agency.Models
         public string Mail { get; set; }
         [Required(ErrorMessage = "Il campo messaggio è obbligatorio")]
         public string Text { get; set; }
-        public List<TravelPackage> packages { get; set; }
+        public int? TravelPackageId { get; set; }
+        public TravelPackage? TravelPackage { get; set; }
 
         public Message()
         {
